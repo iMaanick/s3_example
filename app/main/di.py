@@ -2,7 +2,7 @@ from dishka import Provider, provide, Scope
 
 from app.application.models.config import MinioSettings
 from app.application.use_cases.process_files import ProcessFilesUseCase
-from app.domain.files_gateway.gateway import FilesGateway
+from app.domain.files.gateway import FilesGateway
 from app.infrastructure.minio.gateway import MinioGateway
 
 

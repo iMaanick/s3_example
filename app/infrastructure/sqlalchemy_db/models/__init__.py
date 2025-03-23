@@ -1,6 +1,6 @@
 __all__ = (
     "Base",
-    "File",
+    "FileInfo",
 )
 from .base import Base
-from .file import File
+from .file_info import FileInfo

@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-from app.domain.files_gateway.entities import StoredFile
+from app.domain.files.entities import StoredFile
 
 
 class FilesGateway(ABC):
     @abstractmethod
-    async def get_files(self, ) -> list[StoredFile]:
+    def get_files(self, ) -> list[StoredFile]:
         raise NotImplementedError

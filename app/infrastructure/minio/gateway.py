@@ -2,8 +2,8 @@ import boto3
 from botocore.exceptions import ClientError
 
 from app.application.models.config import MinioSettings
-from app.domain.files_gateway.entities import StoredFile
-from app.domain.files_gateway.gateway import FilesGateway
+from app.domain.files.entities import StoredFile
+from app.domain.files.gateway import FilesGateway
 
 
 class MinioGateway(FilesGateway):
@@ -27,7 +27,7 @@ class MinioGateway(FilesGateway):
             self.client.create_bucket(Bucket=self.bucket_name)
             print(f"Bucket '{self.bucket_name}' created.")
 
-    async def get_files(self) -> list[StoredFile]:
+    def get_files(self) -> list[StoredFile]:
         response = self.client.list_objects_v2(Bucket=self.bucket_name)
         files = []
 
