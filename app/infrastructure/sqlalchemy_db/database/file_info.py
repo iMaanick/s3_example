@@ -1,4 +1,4 @@
-from sqlalchemy import insert
+from sqlalchemy.dialects.sqlite import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.domain.file_info.gateway import FileInfoGateway
@@ -10,6 +10,9 @@ class FileInfoSqlGateway(FileInfoGateway):
         self.session = session
 
     async def add_file_info(self, file_name: str) -> None:
-        stmt = insert(FileInfoORM).values(file_name=file_name)
+        stmt = insert(FileInfoORM).values(file_name=file_name).on_conflict_do_update(
+            index_elements=["file_name"],
+            set_={"file_name": file_name}
+        )
 
         await self.session.execute(stmt)
